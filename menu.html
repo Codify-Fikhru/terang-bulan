@@ -22,7 +22,6 @@
             --gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
         }
 
-        /* Base styles from previous page */
         * {
             margin: 0;
             padding: 0;
@@ -42,7 +41,6 @@
             padding: 0 2rem;
         }
 
-        /* Header styles remain the same */
         header {
             background: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
@@ -82,8 +80,14 @@
             padding: 0.5rem 0;
             transition: color 0.3s ease;
         }
+        nav a:hover {
+            color: var(--primary);
+        }
 
-        /* Menu Page Specific Styles */
+        nav a:hover::after {
+            width: 100%;
+        }
+
         .menu-banner {
             height: 400px;
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -216,6 +220,10 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.9rem;
+            text-decoration: none;
+            /* Menghilangkan garis bawah */
+            display: inline-block;
+            /* Agar mendukung padding */
         }
 
         .order-btn:hover {
@@ -257,7 +265,6 @@
             text-align: center;
         }
 
-        /* Responsive Design */
         @media (max-width: 768px) {
             .menu-banner {
                 height: 300px;
@@ -307,7 +314,6 @@
             }
         }
 
-        /* Menu Toggle Styles */
         .menu-toggle {
             display: none;
             flex-direction: column;
@@ -338,7 +344,8 @@
     <header>
         <div class="container">
             <div class="logo">
-                <img src="/api/placeholder/120/60" alt="Terang Bulan Mini Logo">
+                <img src="https://png.pngtree.com/png-vector/20240427/ourmid/pngtree-original-terang-bulan-or-sweet-martabak-from-indonesia-vector-png-image_12291158.png"
+                    alt="Terang Bulan Mini Logo">
             </div>
             <nav>
                 <ul>
@@ -380,7 +387,8 @@
                 <div class="menu-grid">
                     <div class="menu-item" data-category="classic">
                         <div class="menu-item-image">
-                            <img src="/api/placeholder/400/280" alt="Terang Bulan Coklat">
+                            <img src="https://cdn.yummy.co.id/content-images/images/20201224/jB0fO23dFVneP2mPicZENTeTnRpT8TPd-31363038373933373032d41d8cd98f00b204e9800998ecf8427e.jpg?x-oss-process=image/resize,w_600,h_600,m_fixed,image/format,webp"
+                                alt="Terang Bulan Coklat">
                             <span class="category-tag">Klasik</span>
                         </div>
                         <div class="menu-item-content">
@@ -388,14 +396,15 @@
                             <p class="description">Coklat premium dengan taburan meses berkualitas</p>
                             <div class="price-order">
                                 <p class="price">Rp15.000</p>
-                                <button class="order-btn">Pesan</button>
+                                <a href="order.html" class="order-btn">Pesan</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="menu-item" data-category="special">
                         <div class="menu-item-image">
-                            <img src="/api/placeholder/400/280" alt="Terang Bulan Coklat Keju">
+                            <img src="https://assets-pergikuliner.com/g6J5bP7Ug9xfvEDYLCxmxhJ_t_k=/770x580/smart/filters:no_upscale()/https://assets-pergikuliner.com/uploads/image/picture/668108/picture-1504841621.jpeg"
+                                alt="Terang Bulan Coklat Keju">
                             <span class="category-tag">Special</span>
                         </div>
                         <div class="menu-item-content">
@@ -403,14 +412,15 @@
                             <p class="description">Kombinasi sempurna coklat dan keju</p>
                             <div class="price-order">
                                 <p class="price">Rp20.000</p>
-                                <button class="order-btn">Pesan</button>
+                                <a href="order.html" class="order-btn">Pesan</a>
                             </div>
                         </div>
                     </div>
 
                     <div class="menu-item" data-category="premium">
                         <div class="menu-item-image">
-                            <img src="/api/placeholder/400/280" alt="Terang Bulan Nutella">
+                            <img src="https://i.gojekapi.com/darkroom/gofood-indonesia/v2/images/uploads/ac8d34cb-ba3a-4b53-bb3d-b9fa7d603175_Go-Biz_20210506_130039.jpeg"
+                                alt="Terang Bulan Nutella">
                             <span class="category-tag">Premium</span>
                         </div>
                         <div class="menu-item-content">
@@ -418,7 +428,7 @@
                             <p class="description">Nutella asli dengan taburan kacang almond</p>
                             <div class="price-order">
                                 <p class="price">Rp25.000</p>
-                                <button class="order-btn">Pesan</button>
+                                <a href="order.html" class="order-btn">Pesan</a>
                             </div>
                         </div>
                     </div>
@@ -444,7 +454,6 @@
     </footer>
 
     <script>
-        // Menu filtering
         document.addEventListener('DOMContentLoaded', function () {
             const categoryButtons = document.querySelectorAll('.category-btn');
             const menuItems = document.querySelectorAll('.menu-item');
@@ -466,7 +475,6 @@
                 });
             });
 
-            // Menu toggle for mobile view
             const menuToggle = document.getElementById('menu-toggle');
             const nav = document.querySelector('nav');
 

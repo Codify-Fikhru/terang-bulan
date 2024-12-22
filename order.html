@@ -66,10 +66,22 @@
             transition: transform 0.3s ease;
         }
 
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+
         nav ul {
             display: flex;
             gap: 3.5rem;
             list-style: none;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         nav a {
@@ -349,7 +361,8 @@
     <header>
         <div class="container">
             <div class="logo">
-                <img src="/api/placeholder/120/60" alt="Terang Bulan Mini Logo">
+                <img src="https://png.pngtree.com/png-vector/20240427/ourmid/pngtree-original-terang-bulan-or-sweet-martabak-from-indonesia-vector-png-image_12291158.png"
+                    alt="Terang Bulan Mini Logo">
             </div>
             <nav>
                 <ul>

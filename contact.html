@@ -5,113 +5,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontak - Terang Bulan Mini</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap");
         :root {
-            --primary: #FF6B6B;
-            --text-dark: #333;
-            --text-light: #fff;
+            --primary: #fca311;
+            --primary-light: #ffba08;
+            --secondary: #14213d;
+            --accent: #e63946;
             --bg-light: #f8f9fa;
-            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            --text-dark: #2b2d42;
+            --text-light: #ffffff;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+            --bg-gradient: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            font-family: "Plus Jakarta Sans", sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 2rem;
+            width: 100%;
         }
 
         /* Header Styles */
         header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
             position: fixed;
+            width: 100%;
             top: 0;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: var(--shadow-md);
             z-index: 1000;
+            box-shadow: var(--shadow-sm);
         }
 
-        header .container {
+        .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 20px;
+            height: 80px;
         }
 
         .logo img {
-            height: 50px;
+            height: 60px;
+            transition: var(--transition);
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         nav ul {
             display: flex;
+            gap: 3.5rem;
             list-style: none;
-            gap: 2rem;
         }
 
         nav a {
             text-decoration: none;
             color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
         nav a:hover {
             color: var(--primary);
         }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 4px;
-            cursor: pointer;
-        }
-
-        .menu-toggle .bar {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            transition: 0.3s;
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Contact Banner */
         .contact-banner {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url("/api/placeholder/1200/250");
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url("/api/placeholder/1200/300");
             background-size: cover;
             background-position: center;
-            height: 250px;
+            height: 300px;
             display: flex;
             align-items: center;
+            justify-content: center;
             text-align: center;
             color: var(--text-light);
             margin-top: 80px;
         }
 
         .contact-banner h1 {
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         /* Contact Section */
         .contact-section {
-            padding: 4rem 0;
-            background: var(--bg-light);
+            padding: 5rem 0;
         }
 
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 3rem;
             margin-bottom: 4rem;
         }
@@ -119,39 +143,43 @@
         .contact-info,
         .contact-form {
             background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: var(--shadow-md);
+            padding: clamp(1.5rem, 3vw, 3rem);
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
         }
 
         .info-cards {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
             margin: 2rem 0;
         }
 
         .info-card {
-            padding: 1.5rem;
+            padding: 2rem;
             background: var(--bg-light);
-            border-radius: 10px;
+            border-radius: 15px;
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .info-card:hover {
             transform: translateY(-5px);
+            border-color: var(--primary);
         }
 
         .info-card i {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 1rem;
+            transition: var(--transition);
         }
 
         .social-media {
             text-align: center;
-            margin-top: 2.5rem;
+            margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid #eee;
         }
@@ -160,156 +188,131 @@
             display: flex;
             justify-content: center;
             gap: 1.5rem;
-            margin-top: 1rem;
+            margin-top: 1.5rem;
         }
 
         .social-icon {
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
-            background: var(--gradient);
-            color: white;
+            background: var(--bg-gradient);
+            color: var(--text-light);
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
+            transition: var(--transition);
+            font-size: 1.3rem;
         }
 
         .social-icon:hover {
-            transform: translateY(-3px);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: var(--shadow-md);
         }
 
         /* Form Styles */
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: var(--text-dark);
+            margin-bottom: 0.7rem;
             font-weight: 500;
         }
 
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-control {
             width: 100%;
-            padding: 0.8rem;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: all 0.3s ease;
+            padding: 1rem;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            transition: var(--transition);
             font-size: 1rem;
+            background: var(--bg-light);
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-control:focus {
             border-color: var(--primary);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.1);
+            box-shadow: 0 0 0 4px rgba(252, 163, 17, 0.1);
         }
 
         .submit-btn {
             width: 100%;
-            padding: 1rem;
-            background: var(--gradient);
-            color: white;
+            padding: 1.2rem;
+            background: var(--bg-gradient);
+            color: var(--text-light);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
         }
 
-        /* FAQ Section */
-        .faq-section {
-            padding: 4rem 0;
-            background: white;
+        /* Map Section */
+        .map-section {
+            margin-top: 4rem;
         }
 
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            margin-bottom: 1rem;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 1.5rem;
-            background: var(--bg-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .faq-answer {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            background: white;
-        }
-
-        .faq-item.active .faq-answer {
-            padding: 1.5rem;
-            max-height: 500px;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: var(--text-light);
-            padding: 1.5rem 0;
+        .map-section h2 {
+            margin-bottom: 2rem;
             text-align: center;
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .info-cards {
-                grid-template-columns: repeat(2, 1fr);
-            }
+        .map-container {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            height: 450px;
         }
 
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
+            .mobile-menu-btn {
+                display: block;
             }
 
             nav ul {
                 display: none;
                 position: absolute;
-                top: 100%;
+                top: 80px;
                 left: 0;
                 right: 0;
                 background: white;
                 flex-direction: column;
                 padding: 1rem 0;
-                text-align: center;
                 box-shadow: var(--shadow-md);
             }
 
-            nav.active ul {
+            nav ul.active {
                 display: flex;
+            }
+
+            nav ul li {
+                padding: 1rem 2rem;
             }
 
             .info-cards {
@@ -317,12 +320,32 @@
             }
 
             .contact-banner {
-                height: 200px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
             }
 
-            .contact-banner h1 {
-                font-size: 2rem;
+            .contact-info,
+            .contact-form {
+                padding: 1.5rem;
             }
+
+            .social-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+        }
+
+        footer {
+            background: var(--secondary);
+            color: var(--text-light);
+            padding: 4rem 0;
+            text-align: center;
         }
     </style>
 </head>
@@ -330,22 +353,23 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo">
-                <img src="/api/placeholder/150/50" alt="Terang Bulan Mini Logo">
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="menu.html">Menu</a></li>
-                    <li><a href="order.html">Pesan</a></li>
-                    <li><a href="contact.html">Kontak</a></li>
-                </ul>
-                <div class="menu-toggle" id="menu-toggle">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://png.pngtree.com/png-vector/20240427/ourmid/pngtree-original-terang-bulan-or-sweet-martabak-from-indonesia-vector-png-image_12291158.png"
+                        alt="Terang Bulan Mini Logo">
                 </div>
-            </nav>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <nav>
+                    <ul>
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="menu.html">Menu</a></li>
+                        <li><a href="order.html">Order</a></li>
+                        <li><a href="contact.html">Kontak</a></li>
+                    </ul>
+                </nav>
+            </div>
         </div>
     </header>
 
@@ -353,7 +377,7 @@
         <section class="contact-banner">
             <div class="container">
                 <h1>Hubungi Kami</h1>
-                <p>Kami siap melayani pertanyaan dan masukan Anda</p>
+                <p>Kami siap melayani pertanyaan dan masukan Anda 24/7</p>
             </div>
         </section>
 
@@ -387,10 +411,13 @@
                         <div class="social-media">
                             <h3>Ikuti Kami</h3>
                             <div class="social-icons">
-                                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="social-icon" aria-label="Instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="#" class="social-icon" aria-label="Facebook"><i
+                                        class="fab fa-facebook"></i></a>
+                                <a href="#" class="social-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="social-icon" aria-label="WhatsApp"><i
+                                        class="fab fa-whatsapp"></i></a>
                             </div>
                         </div>
                     </div>
@@ -400,19 +427,22 @@
                         <form id="messageForm">
                             <div class="form-group">
                                 <label for="name">Nama Lengkap</label>
-                                <input type="text" id="name" name="name" required>
+                                <input type="text" id="name" name="name" class="form-control" required
+                                    placeholder="Masukkan nama lengkap">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="email" class="form-control" required
+                                    placeholder="Masukkan email">
                             </div>
                             <div class="form-group">
                                 <label for="phone">Nomor Telepon</label>
-                                <input type="tel" id="phone" name="phone" required>
+                                <input type="tel" id="phone" name="phone" class="form-control" required
+                                    placeholder="Masukkan nomor telepon">
                             </div>
                             <div class="form-group">
                                 <label for="subject">Subjek</label>
-                                <select id="subject" name="subject" required>
+                                <select id="subject" name="subject" class="form-control" required>
                                     <option value="">Pilih Subjek</option>
                                     <option value="umum">Pertanyaan Umum</option>
                                     <option value="pemesanan">Pemesanan</option>
@@ -422,7 +452,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="message">Pesan</label>
-                                <textarea id="message" name="message" rows="5" required></textarea>
+                                <textarea id="message" name="message" class="form-control" rows="5" required
+                                    placeholder="Tulis pesan Anda di sini..."></textarea>
                             </div>
                             <button type="submit" class="submit-btn">Kirim Pesan</button>
                         </form>
@@ -433,49 +464,9 @@
                     <h2>Lokasi Kami</h2>
                     <div class="map-container">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.6664672160346!2d106.82496081476885!3d-6.175392395527934!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5d2e764b12d%3A0x3d2ad6e1e0e9bcc8!2sMonumen%20Nasional!5e0!3m2!1sid!2sid!4v1627900674782!5m2!1sid!2sid"
-                            width="100%" height="450" style="border:0;border-radius:15px;" allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="faq-section">
-            <div class="container">
-                <h2>Pertanyaan Umum</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Bagaimana cara memesan Terang Bulan Mini?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Anda dapat memesan Terang Bulan Mini melalui halaman <a href="order.html">Pesan</a> di
-                                situs web kami atau menghubungi kami melalui nomor telepon yang tertera di halaman
-                                kontak.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Apakah ada layanan pengiriman?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Ya, kami menyediakan layanan pengiriman untuk wilayah tertentu. Silakan hubungi kami
-                                untuk informasi lebih lanjut mengenai area pengiriman.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h3>Apakah ada diskon untuk pemesanan dalam jumlah besar?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Ya, kami menawarkan diskon khusus untuk pemesanan dalam jumlah besar. Silakan hubungi
-                                kami untuk mendapatkan penawaran terbaik.</p>
-                        </div>
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2975.1604764557273!2d119.50765350894197!3d-5.13915939481652!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbee35568877157%3A0x47e89cef5c1f6daf!2sPT.%20Asiah%20Lintas%20Raya!5e1!3m2!1sid!2sid!4v1734860424274!5m2!1sid!2sid"
+                            width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
@@ -483,22 +474,17 @@
     </main>
 
     <footer>
-        <p>&copy; 2024 Terang Bulan Mini. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Terang Bulan Mini. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        document.querySelectorAll('.faq-question').forEach(item => {
-            item.addEventListener('click', () => {
-                const parent = item.parentElement;
-                parent.classList.toggle('active');
-            });
-        });
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navUl = document.querySelector('nav ul');
 
-        const menuToggle = document.getElementById('menu-toggle');
-        const nav = document.querySelector('nav');
-
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
+        mobileMenuBtn.addEventListener('click', () => {
+            navUl.classList.toggle('active');
         });
     </script>
 </body>
